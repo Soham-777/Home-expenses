@@ -1,12 +1,12 @@
 import flet as ft
-import json
 import os
-import tempfile  # Add this import
-from datetime import datetime, timedelta
+import json
+from datetime import datetime
 
-# This line is the fix:
-# It looks for a safe internal folder on Android; if it can't find it, it uses a temp folder.
-DATA_FILE = os.path.join(ft.app_storage_dir or tempfile.gettempdir(), "expenses.json")
+# This looks for a safe place on your phone to save the "expenses.json" file
+# It uses the current working directory if it can't find a specific storage path
+data_dir = os.getcwd()
+DATA_FILE = os.path.join(data_dir, "expenses.json")
 
 CATEGORIES = [
     "Groceries", "Rent", "Electricity", "Gas/LPG",
